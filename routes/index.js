@@ -43,4 +43,13 @@ module.exports =function (app) {
     app.post('/selectcomment',(req,res) => {
         controller.selectCommentPage(req,res)
     })
+
+    // 获取用户IP
+    app.post('/sign',(req,res) => {
+        var ip = req.ip
+        res.send({
+            code:200,
+            ip:ip
+        })
+    })
 }
