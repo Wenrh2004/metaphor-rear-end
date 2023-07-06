@@ -4,12 +4,13 @@ const db = require('../lib/db')
 // 新建walls
 exports.insertWall = async (req,res) => {
     let data = req.body;
-    // console.log(data)
-    await db.insertWall([data.type,data.massage,data.name,data.userID,data.moment,data.label,data.label,data.color,data.imgurl])
+    console.log(data);
+
+    await db.insertWall([data.type,data.message,data.name,data.userID,data.moment,data.label,data.color,data.imgurl])
     .then(result => {
         res.send({
             code:200,
-            massage:result,
+            message:result,
         })
     })
 }
@@ -20,18 +21,18 @@ exports.insertFeedback = async (req,res) => {
     .then(result => {
         res.send({
             code:200,
-            massage:result,
+            message:result,
         })
     })
 }
 // 新建评论
 exports.insertComment = async (req,res) => {
     let data = req.body;
-    await db.insertComment([data.wallID,data.userID,data.imgurl,data.comments,data.name,data.moment])
+    await db.insertComment([data.wallID,data.userID,data.imgurl,data.comment,data.name,data.moment])
     .then(result => {
         res.send({
             code:200,
-            massage:result,
+            message:result,
         })
     })
 }
@@ -67,7 +68,7 @@ exports.deleteComment = async (req,res) => {
     await db.deleteComment(data.id).then((result) => {
         res.send({
             code:200,
-            massage:result,
+            message:result,
         })
     })
 }
@@ -88,7 +89,7 @@ exports.selectWallPage = async (req,res) => {
             // 点赞
             result[i].islove = await db.selectLoveCount(result[i].id,data.userID);
             // 评论
-            result[i].comment = await db.selectCommentCount(result[i].id)
+            result[i].comment = await db.selectCommentCount(result[i].id);
         }
         res.send({
             code:200,

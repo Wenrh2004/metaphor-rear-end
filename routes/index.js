@@ -12,11 +12,11 @@ module.exports =function (app) {
         controller.insertWall(req,res)
     })
     // 新建反馈
-    app.post('.insertfeedback',(req,res) => {
+    app.post('/insertfeedback',(req,res) => {
         controller.insertFeedback(req,res)
     })
     // 新建评论
-    app.post('./insertcomment',(req,res) => {
+    app.post('/insertcomment',(req,res) => {
         controller.insertComment(req,res)
     })
 
@@ -36,7 +36,7 @@ module.exports =function (app) {
 
     // Select
     // wall
-    app.post('/selectwall',(req,res) => {
+    app.post('/selectwallpage',(req,res) => {
         controller.selectWallPage(req,res)
     })
     // comment
